@@ -12,5 +12,11 @@
         </div>
     </div>
 
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            @include('components.forms.login')
+        </div>
+    </div>
+
     @include('components.modal', ['modal_id' => 'default-modal', 'title' => 'Some title', 'content' => 'This is content'])
 @endsection
