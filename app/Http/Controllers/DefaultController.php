@@ -72,6 +72,20 @@ class DefaultController extends Controller
         $file->thumb_path = $disc_path;
         $file->save();
 
+        session()->flash('success', 'The file has been uploaded.');
+
+        return redirect()->back();
+    }
+
+    public function fileDelete(Request $request, $id)
+    {
+        $file = File::find($id);
+        $file->forceDelete();
+
+        Storage::disk('public')->delete($file->path);
+
+        session()->flash('success', 'The file ahs been deleted.');
+
         return redirect()->back();
     }
 }
