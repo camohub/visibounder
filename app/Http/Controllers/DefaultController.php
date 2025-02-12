@@ -7,13 +7,15 @@ use App\Http\Requests\FileUploadRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\File;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
 class DefaultController extends Controller
 {
+
+    public int $per_page = 12;
+
 
     public function index()
     {
@@ -22,12 +24,14 @@ class DefaultController extends Controller
         ]);
     }
 
+
     public function login(LoginRequest $request)
     {
         $data = $request->validated();
 
         return view('default.index', []);
     }
+
 
     public function files(Request $request)
     {
@@ -38,23 +42,6 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function xxxfileUpload(Request $request)
-    {
-        phpinfo();
-
-        return;
-        Log::info($request->all());
-        if ( $request->hasFile('file') && $request->file('file')->isValid() ) {
-            Log::info('aaaaaaaaaaaaaa');
-        }
-        else {
-            Log::info('bbbbbbbbbbbbbb');
-            Log::info((int)$request->hasFile('file'));
-            Log::info((int)$request->file('file')->isValid());
-        }
-
-        return redirect()->back();
-    }
 
     public function fileUpload(FileUploadRequest $request)
     {
@@ -76,6 +63,7 @@ class DefaultController extends Controller
 
         return redirect()->back();
     }
+
 
     public function fileDelete(Request $request, $id)
     {

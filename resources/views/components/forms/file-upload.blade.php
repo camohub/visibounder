@@ -2,7 +2,7 @@
     @csrf
 
     <div class="row mb-3">
-        <h2 class="col-12">File Upload</h2>
+        <h2 class="col-12 h4">File Upload</h2>
     </div>
 
     <div class="row align-items-end  mb-3">
