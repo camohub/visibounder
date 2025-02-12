@@ -26,4 +26,29 @@
     display: none;
 }
 
+.alert {
+    color: #fff;
+}
+
+.alert-success {
+    background-color: #009267;
+    border-color: #017352;
+}
+
+.alert-danger {
+    background-color: #d20505;
+    border-color: #bd0404;
+}
+
+.alert-info {
+    background-color: #0041af;
+    border-color: #013998;
+}
+
+.alert .btn-close {
+    font-size: 0.5rem;
+    font-weight: bold;
+    color: #fff !important;
+}
+
 
