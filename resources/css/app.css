@@ -26,8 +26,19 @@
     display: none;
 }
 
+.alerts-wrapper {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 10000;
+    padding: 0 14px;
+    min-width: 350px;
+    max-width: 500px;
+}
+
 .alert {
     color: #fff;
+    z-index: 10000;
 }
 
 .alert-success {

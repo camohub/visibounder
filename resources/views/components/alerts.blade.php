@@ -1,4 +1,4 @@
-<div class="position-fixed bottom-0 end-0 px-3 w-50">
+<div class="alerts-wrapper">
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show">
             {{ session('success') }}
