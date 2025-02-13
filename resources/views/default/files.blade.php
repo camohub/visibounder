@@ -2,8 +2,6 @@
 
 @section('content')
 
-    <x-header></x-header>
-
     <div class="row justify-content-center mb-4">
         <div class="col-md-8">
             <x-forms.file-upload></x-forms.file-upload>
