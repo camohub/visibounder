@@ -40,7 +40,7 @@
                     <div class="row mb-4">
                         <div class="col-12">
                             <label for="form-password-id" class="form-label">Password</label>
-                            <input name="password" value="{{ old('password') }}" type="text" class="form-control" id="form-password-id">
+                            <input name="password" value="{{ old('password') }}" type="password" class="form-control" id="form-password-id">
                         </div>
                         <x-forms.input-error field="password" error_bag="register" />
                     </div>

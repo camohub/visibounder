@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 
 class AuthController extends Controller
@@ -33,9 +34,11 @@ class AuthController extends Controller
         $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
         $user->save();
 
+        // TODO: Send email verification
+
         auth()->login($user);
 
-        return redirect()->back()->with('success', 'You have been registered.');
+        return redirect()->back()->with('success', 'You have been registered. Verify your email address please.');
     }
 
 
@@ -43,7 +46,9 @@ class AuthController extends Controller
     {
         $data = $request->validated();
 
-        $user = User::where('email', $data['email'])->first();
+        $user = User::where('email', $data['email'])
+            ->whereNotNull('email_verified_at')
+            ->first();
 
         if ( !$user ) {
             return redirect()->back()->with('error', 'User not found');
@@ -53,6 +58,8 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'Invalid credentials');
         }
 
-        return redirect()->back()->with('success', 'You have been logged in.');
+        auth()->login($user);
+
+        return redirect()->back()->with('success', "Welcome back $user->name!");
     }
 }
