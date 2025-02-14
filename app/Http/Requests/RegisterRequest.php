@@ -5,10 +5,10 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 
-class LoginRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
 
-    protected $errorBag = 'login';
+    protected $errorBag = 'register';
 
     /**
      * Determine if the user is authorized to make this request.
@@ -21,13 +21,15 @@ class LoginRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
+            'name' => ['required', 'string', 'min:2'],
+            'surname' => ['required', 'string', 'min:2'],
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:6'],
         ];
     }
 }

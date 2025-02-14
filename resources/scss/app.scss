@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+#wrapper {
+    padding-top: 80px;
+}
 
 .delete-x-link {
     display: flex;
@@ -20,10 +21,10 @@
 
 .pagination-container {
     position: relative;
-}
 
-.pagination-container p {
-    display: none;
+    p {
+        display: none;
+    }
 }
 
 .alerts-wrapper {
@@ -34,32 +35,42 @@
     padding: 0 14px;
     min-width: 350px;
     max-width: 500px;
+
+    .alert {
+        color: #fff;
+        z-index: 10000;
+
+        .btn-close {
+            font-size: 0.5rem;
+            font-weight: bold;
+            color: #fff !important;
+        }
+    }
+
+    .alert-success {
+        background-color: #009267;
+        border-color: #017352;
+    }
+
+    .alert-danger {
+        background-color: #d20505;
+        border-color: #bd0404;
+    }
+
+    .alert-info {
+        background-color: #0041af;
+        border-color: #013998;
+    }
 }
 
-.alert {
-    color: #fff;
-    z-index: 10000;
+.modal-content {
+    border-radius: 0;
+
+    .modal-body {
+        padding: 2.5rem;
+    }
 }
 
-.alert-success {
-    background-color: #009267;
-    border-color: #017352;
-}
 
-.alert-danger {
-    background-color: #d20505;
-    border-color: #bd0404;
-}
-
-.alert-info {
-    background-color: #0041af;
-    border-color: #013998;
-}
-
-.alert .btn-close {
-    font-size: 0.5rem;
-    font-weight: bold;
-    color: #fff !important;
-}
 
 

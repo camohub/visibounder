@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 class DefaultController extends Controller
 {
 
-    public int $per_page = 12;
+    public int $per_page = 20;
 
 
     public function index()
