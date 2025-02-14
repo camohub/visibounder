@@ -76,4 +76,14 @@ class DefaultController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function changeLang(Request $request, $lang)
+    {
+        session()->put('lang', $lang);
+
+        session()->flash('success', 'The language has been changed.');
+
+        return redirect()->back();
+    }
 }
