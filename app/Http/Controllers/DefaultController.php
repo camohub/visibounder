@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FileUploadRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\SetLangRequest;
 use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -25,14 +27,6 @@ class DefaultController extends Controller
     }
 
 
-    public function login(LoginRequest $request)
-    {
-        $data = $request->validated();
-
-        return view('default.index', []);
-    }
-
-
     public function files(Request $request)
     {
         $files = File::orderBy('id', 'desc')->paginate($this->per_page);
@@ -42,45 +36,27 @@ class DefaultController extends Controller
         ]);
     }
 
-
-    public function fileUpload(FileUploadRequest $request)
+    /**
+     * @param Request $request
+     * @param $lang
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function setLang(Request $request, $lang)
     {
-        $file = $request->file('file');
-        $file_name = $file->getClientOriginalName();
-        $file_name = Str::slug($file_name);
-        $file_name = Str::lower($file_name);
-        $file_name = time() .'-'. $file_name;
+        if ( !in_array($lang, ['en', 'sk']) ) {
+            session()->flash('error', __('messages.lang_not_supported', ['value' => $lang]));
+            return redirect()->back();
+        }
 
-        $disc_path = $file->storeAs('campaigns', $file_name, 'public');
-
-        $file = new File();
-        $file->name = $file_name;
-        $file->path = $disc_path;
-        $file->thumb_path = $disc_path;
-        $file->save();
-
-        session()->flash('success', 'The file has been uploaded.');
-
-        return redirect()->back();
-    }
-
-
-    public function fileDelete(Request $request, $id)
-    {
-        $file = File::find($id);
-        $file->forceDelete();
-
-        Storage::disk('public')->delete($file->path);
-
-        session()->flash('success', 'The file ahs been deleted.');
-
-        return redirect()->back();
-    }
-
-
-    public function changeLang(Request $request, $lang)
-    {
         session()->put('lang', $lang);
+        app()->setLocale($lang);
+
+        $user = auth()->user();
+
+        if ( $user ) {
+            $user->lang = $lang;
+            $user->save();
+        }
 
         session()->flash('success', __('messages.lang_changed'));
 

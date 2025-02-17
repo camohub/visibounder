@@ -24,7 +24,8 @@
                     </ul>
                 </li>
             </ul>
-            <a href="{{ url('/lang', ['lang' => 'en']) }}" class="me-1">en</a>|
+            <a href="{{ url('/lang', ['lang' => 'es']) }}" class="mx-1 text-danger">es</a>|
+            <a href="{{ url('/lang', ['lang' => 'en']) }}" class="mx-1">en</a>|
             <a href="{{ url('/lang', ['lang' => 'sk']) }}" class="ms-1 me-3">sk</a>
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#login-modal">Login</button>
         </div>
