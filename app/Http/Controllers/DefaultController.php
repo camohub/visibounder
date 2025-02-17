@@ -82,7 +82,7 @@ class DefaultController extends Controller
     {
         session()->put('lang', $lang);
 
-        session()->flash('success', 'The language has been changed.');
+        session()->flash('success', __('messages.lang_changed'));
 
         return redirect()->back();
     }
