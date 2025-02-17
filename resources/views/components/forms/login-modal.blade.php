@@ -10,9 +10,9 @@
                     @csrf
 
                     <div class="mb-3 d-flex flex-row justify-content-start align-items-end">
-                        <h2 class="mb-0">Login</h2>
+                        <h2 class="mb-0">{{ __('forms.login.title') }}</h2>
                         {{-- data-bs-dismiss="modal" close login-modal --}}
-                        <small class="ms-3 mb-0 text-primary" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#register-modal">or Register</small>
+                        <small class="ms-3 mb-0 text-primary" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#register-modal">{{ __('forms.login.or_register') }}</small>
                     </div>
 
                     <div class="row mb-3">
@@ -24,15 +24,15 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-12">
-                            <label for="form-password-id" class="form-label">Password</label>
+                            <label for="form-password-id" class="form-label">{{ __('forms.login.password') }}</label>
                             <input name="password" value="{{ old('password') }}" type="password" class="form-control" id="form-password-id">
                         </div>
                         <x-forms.input-error field="password" error_bag="login" />
                     </div>
                     <div class="row mb-3">
                         <div class="col-12">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Log in</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('forms.login.close') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('forms.login.log_in') }}</button>
                         </div>
                     </div>
                 </div>
